@@ -1,0 +1,7 @@
+LICENSE
+pyproject.toml
+setup.py
+mathnexus.egg-info/PKG-INFO
+mathnexus.egg-info/SOURCES.txt
+mathnexus.egg-info/dependency_links.txt
+mathnexus.egg-info/top_level.txt
