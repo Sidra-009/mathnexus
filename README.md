@@ -170,8 +170,6 @@ If used for academic or educational work, please cite the repository.
 ## 👩‍💻 Core Developer
 
 **Sidra Saqlain**  
-Applied Mathematics & Software Engineering  
-GitHub | PyPI  
 
 > *This project was built by debugging deeply, understanding failures,  
 > and translating mathematical theory into clean, working code.*
