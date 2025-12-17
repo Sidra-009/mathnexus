@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+src/mathnexus/__init__.py
+src/mathnexus/coordinate_geometry.py
+src/mathnexus/linear_datatypes.py
+src/mathnexus/physics_visuals.py
+src/mathnexus.egg-info/PKG-INFO
+src/mathnexus.egg-info/SOURCES.txt
+src/mathnexus.egg-info/dependency_links.txt
+src/mathnexus.egg-info/top_level.txt

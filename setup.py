@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="mathnexus", 
-    version="3.0",   
+    version="0.3.3",   
     author="Sidra Saqlain",
     author_email="sidrasaqlain11@gmail.com", 
     description="A library for Linear Algebra, 2D Geometry, and Physics Simulations.",
