@@ -1,4 +1,4 @@
-# MathNexus: Advanced Mathematical Framework 📐🚀
+# MathNexus: Mathematical Framework 📐🚀
 
 [![PyPI version](https://badge.fury.io/py/mathnexus.svg)](https://badge.fury.io/py/mathnexus)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
