@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: cleancore
+Version: 0.1.0
+Summary: Dependency-free data transformation audit framework
+Author-email: Sidra <sidrasaqlain11@gmail.com>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# CleanCore
+
+CleanCore is a **dependency-free data transformation audit framework**.
+
+Unlike data profilers, CleanCore tracks:
+- What changed
+- Which rows were affected
+- Before / after values
+- Why it changed (business rule)
+- Compliance-ready audit trail
+
+## Example
+
+```python
+from cleancore import CleanEngine, print_audit_report
+
+engine = CleanEngine(df)
+cleaned_df, audit_log = engine.run()
+print_audit_report(audit_log)

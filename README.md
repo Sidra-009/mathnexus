@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MathNexus: Mathematical Framework 📐🚀
 
 [![PyPI version](https://badge.fury.io/py/mathnexus.svg)](https://badge.fury.io/py/mathnexus)
@@ -13,3 +14,24 @@ Unlike traditional numerical libraries that abstract away the internal logic, Ma
 
 ---
 ***UNDER MAINTENANCE***
+=======
+# CleanCore
+
+CleanCore is a **dependency-free data transformation audit framework**.
+
+Unlike data profilers, CleanCore tracks:
+- What changed
+- Which rows were affected
+- Before / after values
+- Why it changed (business rule)
+- Compliance-ready audit trail
+
+## Example
+
+```python
+from cleancore import CleanEngine, print_audit_report
+
+engine = CleanEngine(df)
+cleaned_df, audit_log = engine.run()
+print_audit_report(audit_log)
+>>>>>>> 1db3dbe (Replace mathnexus with CleanCore audit framework)
