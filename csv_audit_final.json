@@ -1,0 +1,40 @@
+{
+  "pipeline": "CSV_Cleaning",
+  "created_at": "2026-01-02T21:46:28.174743",
+  "provena_version": "0.1.0",
+  "summary": {
+    "pipeline": "CSV_Cleaning",
+    "total_steps": 1,
+    "total_changes": 0,
+    "start_time": "2026-01-02T21:46:28.174743",
+    "end_time": "2026-01-02T21:46:28.174743"
+  },
+  "audit_trail": [
+    {
+      "step_id": "step_001",
+      "function_name": "clean_product_names_proper",
+      "timestamp": "2026-01-02T21:46:28.174743",
+      "rule_id": "PRODUCT_CLEAN_V1",
+      "rows_before": 20,
+      "rows_after": 20,
+      "columns_before": [
+        "Member_number",
+        "Date",
+        "itemDescription"
+      ],
+      "columns_after": [
+        "Member_number",
+        "Date",
+        "itemDescription"
+      ],
+      "affected_row_indices": [],
+      "affected_row_count": 0,
+      "sample_before": {},
+      "sample_after": {},
+      "hash_before": "75aa0d7928fb",
+      "hash_after": "75aa0d7928fb",
+      "status": "SUCCESS",
+      "message": null
+    }
+  ]
+}

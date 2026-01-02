@@ -1,0 +1,94 @@
+{
+  "pipeline": "Customer_Data_Cleaning",
+  "created_at": "2026-01-02T21:28:00.692589",
+  "provena_version": "0.1.0",
+  "summary": {
+    "pipeline": "Customer_Data_Cleaning",
+    "total_steps": 2,
+    "total_changes": 2,
+    "start_time": "2026-01-02T21:28:00.692589",
+    "end_time": "2026-01-02T21:28:00.692589"
+  },
+  "audit_trail": [
+    {
+      "step_id": "step_001",
+      "function_name": "validate_emails",
+      "timestamp": "2026-01-02T21:28:00.692589",
+      "rule_id": "GDPR_EMAIL_VALIDATION",
+      "rows_before": 3,
+      "rows_after": 3,
+      "columns_before": [
+        "id",
+        "name",
+        "email",
+        "age"
+      ],
+      "columns_after": [
+        "id",
+        "name",
+        "email",
+        "age"
+      ],
+      "affected_row_indices": [
+        1
+      ],
+      "affected_row_count": 1,
+      "sample_before": {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane.email",
+        "age": 25
+      },
+      "sample_after": {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "INVALID",
+        "age": 25
+      },
+      "hash_before": "f9aef4c3358e",
+      "hash_after": "a9e3adaeff6c",
+      "status": "SUCCESS",
+      "message": null
+    },
+    {
+      "step_id": "step_002",
+      "function_name": "fill_missing_ages",
+      "timestamp": "2026-01-02T21:28:00.692589",
+      "rule_id": "AGE_IMPUTATION_RULE",
+      "rows_before": 3,
+      "rows_after": 3,
+      "columns_before": [
+        "id",
+        "name",
+        "email",
+        "age"
+      ],
+      "columns_after": [
+        "id",
+        "name",
+        "email",
+        "age"
+      ],
+      "affected_row_indices": [
+        0
+      ],
+      "affected_row_count": 1,
+      "sample_before": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "age": null
+      },
+      "sample_after": {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "age": 30
+      },
+      "hash_before": "a9e3adaeff6c",
+      "hash_after": "582e3c324c82",
+      "status": "SUCCESS",
+      "message": null
+    }
+  ]
+}

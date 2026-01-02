@@ -1,0 +1,51 @@
+{
+  "pipeline": "Manual_Test",
+  "created_at": "2026-01-02T21:46:28.167015",
+  "provena_version": "0.1.0",
+  "summary": {
+    "pipeline": "Manual_Test",
+    "total_steps": 1,
+    "total_changes": 2,
+    "start_time": "2026-01-02T21:46:28.158918",
+    "end_time": "2026-01-02T21:46:28.158918"
+  },
+  "audit_trail": [
+    {
+      "step_id": "step_001",
+      "function_name": "clean_product_names_proper",
+      "timestamp": "2026-01-02T21:46:28.158918",
+      "rule_id": "PRODUCT_CLEAN_V1",
+      "rows_before": 3,
+      "rows_after": 3,
+      "columns_before": [
+        "Member_number",
+        "Date",
+        "itemDescription"
+      ],
+      "columns_after": [
+        "Member_number",
+        "Date",
+        "itemDescription"
+      ],
+      "affected_row_indices": [
+        0,
+        2
+      ],
+      "affected_row_count": 2,
+      "sample_before": {
+        "Member_number": "1000",
+        "Date": "01-01-2015",
+        "itemDescription": "  WHOLE MILK  "
+      },
+      "sample_after": {
+        "Member_number": "1000",
+        "Date": "01-01-2015",
+        "itemDescription": "whole milk"
+      },
+      "hash_before": "ec34189b0ce6",
+      "hash_after": "b0171810b76e",
+      "status": "SUCCESS",
+      "message": null
+    }
+  ]
+}
