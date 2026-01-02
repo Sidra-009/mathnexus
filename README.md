@@ -1,24 +1,127 @@
-# CleanCore
+# CleanCore Python
 
-CleanCore is a **dependency-free data transformation audit framework**.
+**A lightweight, dependency-free audit trail system for your data pipelines.**
 
-Unlike data profilers, CleanCore tracks:
-- What changed
-- Which rows were affected
-- Before / after values
-- Why it changed (business rule)
-- Compliance-ready audit trail
+CleanCore automatically creates immutable, row-level audit logs for every data transformation. It's the simplest way to add compliance, debuggability, and provenance tracking to your data cleaning scripts.
 
-## Example
+[![GitHub](https://img.shields.io/badge/GitHub-Source-blue?logo=github)](https://github.com/Sidra-009/cleancore-python-library)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-```python
-from cleancore import AuditEngine
-import pandas as pd
+---
 
-df = pd.read_csv("Groceries_dataset.csv")
+## ✨ Why CleanCore?
 
-engine = AuditEngine(df)
-cleaned_df, audit = engine.run()
+- 🔍 **Full Audit Trail** — Automatically logs what changed, which rows were affected, and why  
+- 🚫 **Zero Dependencies** — Pure Python, works anywhere  
+- ⚖️ **Compliance-Ready** — JSON logs for GDPR, HIPAA, and internal audits  
+- 🐛 **Debugging Superpower** — Trace errors to exact rows and steps  
+- 🔧 **Simple Integration** — One decorator audits any function (lists, dicts, CSVs)
 
-print(cleaned_df.head())
-print(audit)
+---
+
+## 🚀 Quick Start
+
+### Installation
+```bash
+pip install cleancore-python
+Basic Usage: Audit a Single Function
+python
+Copy code
+from cleancore import audit_trail, ProvenaLogger, generate_terminal_report
+
+@audit_trail(rule_id="GDPR_EMAIL_MASKING")
+def clean_emails(data):
+    result = []
+    for row in data:
+        new_row = row.copy()
+        if '@' in new_row.get('email', ''):
+            new_row['email'] = '***@***.***'
+        result.append(new_row)
+    return result
+
+logger = ProvenaLogger("Single_Transformation")
+
+sample_data = [
+    {'id': 1, 'email': 'test@example.com'},
+    {'id': 2, 'email': 'user'}
+]
+
+cleaned_data = clean_emails(sample_data, provena_logger=logger)
+
+print(generate_terminal_report(logger))
+Advanced Usage: Audit a Complete Pipeline
+python
+Copy code
+from cleancore import audit_pipeline, audit_trail
+import csv
+
+def load_data(filepath):
+    with open(filepath) as f:
+        return list(csv.DictReader(f))
+
+@audit_trail(rule_id="STANDARDIZE_NAMES")
+def standardize_names(data):
+    return data
+
+@audit_trail(rule_id="FILL_MISSING_VALUES")
+def fill_missing(data):
+    return data
+
+with audit_pipeline("Customer_Onboarding_Pipeline") as logger:
+    data = load_data("customers.csv")
+    data = standardize_names(data, provena_logger=logger)
+    data = fill_missing(data, provena_logger=logger)
+
+logger.export_json("customer_pipeline_audit.json")
+📋 Example Audit Report Output
+yaml
+Copy code
+🚀 PROVENA AUDIT REPORT: Customer_Onboarding_Pipeline
+======================================================================
+📊 SUMMARY
+   • Steps: 2
+   • Total Changes: 150 rows
+   • Started: 2024-01-15T10:30:00
+----------------------------------------------------------------------
+[1] ✅ standardize_names
+   • Status: SUCCESS
+   • Rule: STANDARDIZE_NAMES
+   • Rows: 10,000 → 10,000
+   • Changed: 120 rows
+   • Sample: Row 42: '  JOHN DOE  ' → 'john doe'
+
+[2] ✅ fill_missing
+   • Status: SUCCESS
+   • Rule: FILL_MISSING_VALUES
+   • Rows: 10,000 → 10,000
+   • Changed: 30 rows
+   • Sample: Row 101: 'age' = None → 34
+======================================================================
+📁 Export: provena export Customer_Onboarding_Pipeline.json
+======================================================================
+📁 Project Structure & API
+audit_trail — Decorator for tracking transformations
+
+ProvenaLogger — Core audit logger
+
+audit_pipeline — Context manager for pipelines
+
+generate_terminal_report() — Human-readable console report
+
+logger.export_json("audit.json") — Persist audit logs
+
+🤝 Contributing & Support
+CleanCore is fully open source and welcomes contributions.
+
+GitHub Repository & Issues
+https://github.com/Sidra-009/cleancore-python-library
+
+Found a bug or have an idea?
+Open an issue on GitHub.
+
+Want to contribute?
+Fork the repo and submit a pull request.
+
+📄 License
+This project is licensed under the MIT License.
+
