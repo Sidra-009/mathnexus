@@ -1,30 +1,27 @@
 # CleanCore Python
 
-**A lightweight, dependency-free audit trail system for your data pipelines.**
+A lightweight, dependency-free audit trail system for Python data pipelines.
 
-CleanCore automatically creates immutable, row-level audit logs for every data transformation. It's the simplest way to add compliance, debuggability, and provenance tracking to your data cleaning scripts.
-
-[![GitHub](https://img.shields.io/badge/GitHub-Source-blue?logo=github)](https://github.com/Sidra-009/cleancore-python-library)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+CleanCore automatically creates immutable, row-level audit logs for every data transformation. It helps with debugging, compliance, and understanding how your data changes across cleaning steps.
 
 ---
 
-## ✨ Why CleanCore?
+## Features
 
-- 🔍 **Full Audit Trail** — Automatically logs what changed, which rows were affected, and why  
-- 🚫 **Zero Dependencies** — Pure Python, works anywhere  
-- ⚖️ **Compliance-Ready** — JSON logs for GDPR, HIPAA, and internal audits  
-- 🐛 **Debugging Superpower** — Trace errors to exact rows and steps  
-- 🔧 **Simple Integration** — One decorator audits any function (lists, dicts, CSVs)
+- Automatic row-level audit logs
+- Zero external dependencies (pure Python)
+- JSON-based audit output for compliance and record keeping
+- Works with lists, dictionaries, and CSV-style data
+- Simple decorator-based API
 
 ---
 
-## 🚀 Quick Start
+## Installation
 
-### Installation
 ```bash
 pip install cleancore-python
-Basic Usage: Audit a Single Function
+Quick Start
+Audit a Single Function
 python
 Copy code
 from cleancore import audit_trail, ProvenaLogger, generate_terminal_report
@@ -41,22 +38,22 @@ def clean_emails(data):
 
 logger = ProvenaLogger("Single_Transformation")
 
-sample_data = [
+data = [
     {'id': 1, 'email': 'test@example.com'},
     {'id': 2, 'email': 'user'}
 ]
 
-cleaned_data = clean_emails(sample_data, provena_logger=logger)
+cleaned = clean_emails(data, provena_logger=logger)
 
 print(generate_terminal_report(logger))
-Advanced Usage: Audit a Complete Pipeline
+Pipeline Usage
 python
 Copy code
 from cleancore import audit_pipeline, audit_trail
 import csv
 
-def load_data(filepath):
-    with open(filepath) as f:
+def load_data(path):
+    with open(path) as f:
         return list(csv.DictReader(f))
 
 @audit_trail(rule_id="STANDARDIZE_NAMES")
@@ -73,55 +70,37 @@ with audit_pipeline("Customer_Onboarding_Pipeline") as logger:
     data = fill_missing(data, provena_logger=logger)
 
 logger.export_json("customer_pipeline_audit.json")
-📋 Example Audit Report Output
-yaml
-Copy code
-🚀 PROVENA AUDIT REPORT: Customer_Onboarding_Pipeline
-======================================================================
-📊 SUMMARY
-   • Steps: 2
-   • Total Changes: 150 rows
-   • Started: 2024-01-15T10:30:00
-----------------------------------------------------------------------
-[1] ✅ standardize_names
-   • Status: SUCCESS
-   • Rule: STANDARDIZE_NAMES
-   • Rows: 10,000 → 10,000
-   • Changed: 120 rows
-   • Sample: Row 42: '  JOHN DOE  ' → 'john doe'
+Output
+CleanCore generates a human-readable terminal report and a machine-readable JSON audit log containing:
 
-[2] ✅ fill_missing
-   • Status: SUCCESS
-   • Rule: FILL_MISSING_VALUES
-   • Rows: 10,000 → 10,000
-   • Changed: 30 rows
-   • Sample: Row 101: 'age' = None → 34
-======================================================================
-📁 Export: provena export Customer_Onboarding_Pipeline.json
-======================================================================
-📁 Project Structure & API
-audit_trail — Decorator for tracking transformations
+Transformation name
 
-ProvenaLogger — Core audit logger
+Rule ID
 
-audit_pipeline — Context manager for pipelines
+Rows before and after
 
-generate_terminal_report() — Human-readable console report
+Number of changed rows
 
-logger.export_json("audit.json") — Persist audit logs
+Sample value changes
 
-🤝 Contributing & Support
-CleanCore is fully open source and welcomes contributions.
+Execution timestamps
 
-GitHub Repository & Issues
+API Overview
+audit_trail – Decorator for auditing functions
+
+ProvenaLogger – Collects audit events
+
+audit_pipeline – Context manager for multi-step pipelines
+
+generate_terminal_report() – Prints terminal summary
+
+export_json() – Saves audit log to file
+
+Source Code
+GitHub Repository
 https://github.com/Sidra-009/cleancore-python-library
 
-Found a bug or have an idea?
-Open an issue on GitHub.
+Issues, feature requests, and pull requests are welcome.
 
-Want to contribute?
-Fork the repo and submit a pull request.
-
-📄 License
-This project is licensed under the MIT License.
-
+License
+MIT License. See the LICENSE file for details.
